@@ -36,6 +36,20 @@ func (t *BinaryTree) Max() *BinaryNode {
 	}
 }
 
+// Min returns the min value node
+func (t *BinaryTree) Min() *BinaryNode {
+	n := t.Root
+	if n == nil {
+		return nil
+	}
+	for {
+		if n.Left == nil {
+			return n
+		}
+		n = n.Left
+	}
+}
+
 // Print displays tree from root
 func (t *BinaryTree) Print() {
 	t.Root.Print(os.Stdout, 0, 'M')

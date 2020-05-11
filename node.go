@@ -120,3 +120,19 @@ func (n *BinaryNode) SearchSubTree(key float64) *BinaryNode {
 	}
 	return n
 }
+
+func (n *BinaryNode) PreOrderTraverse(f func(float64)) {
+	if n != nil {
+		f(n.Key)
+		n.Left.PreOrderTraverse(f)
+		n.Right.PreOrderTraverse(f)
+	}
+}
+
+func (n *BinaryNode) InOrderTraverse(f func(float64)) {
+	if n != nil {
+		n.Left.InOrderTraverse(f)
+		f(n.Key)
+		n.Right.InOrderTraverse(f)
+	}
+}

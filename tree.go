@@ -4,12 +4,18 @@ import "os"
 
 // BinaryTree ...
 type BinaryTree struct {
-	Root *BinaryNode
+	Root          *BinaryNode
+	activateSplay bool
 }
 
 // NewBinaryTree ...
 func NewBinaryTree() *BinaryTree {
-	return &BinaryTree{Root: nil}
+	return &BinaryTree{Root: nil, activateSplay: false}
+}
+
+// ToggleSplay toggle to use splay or not
+func (t *BinaryTree) ToggleSplay(activate bool) {
+	t.activateSplay = activate
 }
 
 // Insert add node to the tree
@@ -30,6 +36,9 @@ func (t *BinaryTree) Max() *BinaryNode {
 	}
 	for {
 		if n.Right == nil {
+			if t.activateSplay {
+				t.splay(n.Key)
+			}
 			return n
 		}
 		n = n.Right
@@ -44,6 +53,9 @@ func (t *BinaryTree) Min() *BinaryNode {
 	}
 	for {
 		if n.Left == nil {
+			if t.activateSplay {
+				t.splay(n.Key)
+			}
 			return n
 		}
 		n = n.Left

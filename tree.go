@@ -24,6 +24,9 @@ func (t *BinaryTree) Insert(key float64, data interface{}) *BinaryTree {
 		t.Root = NewBinaryNode(key, data)
 	} else {
 		t.Root.Insert(key, data)
+		if t.activateSplay {
+			t.splay(key)
+		}
 	}
 	return t
 }

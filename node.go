@@ -138,3 +138,21 @@ func (n *BinaryNode) InOrderTraverse(f func(float64)) {
 		n.Right.InOrderTraverse(f)
 	}
 }
+
+// InReverseOrderTraverse ....
+func (n *BinaryNode) InReverseOrderTraverse(f func(float64)) {
+	if n != nil {
+		n.Right.InOrderTraverse(f)
+		f(n.Key)
+		n.Left.InOrderTraverse(f)
+	}
+}
+
+// PostOrderTraverse ....
+func (n *BinaryNode) PostOrderTraverse(f func(float64)) {
+	if n != nil {
+		n.Right.InOrderTraverse(f)
+		n.Left.InOrderTraverse(f)
+		f(n.Key)
+	}
+}
